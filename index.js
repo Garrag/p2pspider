@@ -26,7 +26,8 @@ p2p.on('metadata', function (metadata) {
         if (err) {
             return console.error(err);
         }
-        // console.log(metadata.name)
+        console.log('-----------------------------------------------------------')
+        console.log(metadata)
         console.log(metadata.infohash + ".torrent has saved.");
     });
 });
