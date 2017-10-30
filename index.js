@@ -21,14 +21,20 @@ p2p.ignore(function (infohash, rinfo, callback) {
 });
 
 p2p.on('metadata', function (metadata) {
-    var torrentFilePathSaveTo = path.join(__dirname, "torrents", metadata.infohash + ".torrent");
+    var torrentFilePathSaveTo = path.join(__dirname, "torrents", metadata.info.name.toString() + ".torrent");
     fs.writeFile(torrentFilePathSaveTo, bencode.encode({'info': metadata.info}), function(err) {
         if (err) {
             return console.error(err);
         }
         console.log('-----------------------------------------------------------')
-        console.log(metadata)
-        console.log(metadata.infohash + ".torrent has saved.");
+        console.log(metadata.info.name.toString() + ".torrent has saved.");
+        // for (var key in metadata.info.files) {
+        //     if (metadata.info.files.hasOwnProperty(key)) {
+        //         var ele = metadata.info.files[key];
+        //         // console.log(ele)
+        //         console.log('==>' + ele.path.toString())
+        //     }
+        // }
     });
 });
 
